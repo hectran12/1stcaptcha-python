@@ -30,7 +30,6 @@ read demo.py to know how to use the library
 
 
     result= client.image_to_text(file="1.jpg")
-    #if file # result= client.image_to_text(base64img="base64img") # if you send base64img
     if result["code"]==0 : # success:
         print(result["token"])
     else: # wrong
@@ -41,7 +40,6 @@ read demo.py to know how to use the library
     url_list=['']
     caption='cars'
     result= client.recaptcha_click(url_list=url_list,caption=caption )
-    # result= client.image_to_text(base64img="base64img") # if you send base64img
     if result["code"]==0 : # success:
         print(result["token"])
     else: # wrong
@@ -51,7 +49,6 @@ read demo.py to know how to use the library
     sitekey="2CB16598-CB82-4CF7-B332-5990DB66F3AB"
     siteurl="https://outlook.com/"
     result= client.funCaptcha_task_proxyless(siteurl,sitekey )
-    # result= client.image_to_text(base64img="base64img") # if you send base64img
     if result["code"]==0 : # success:
         print(result["token"])
     else: # wrong
