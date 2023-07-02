@@ -1,57 +1,70 @@
-website : 1stcaptcha.com
+1stCaptcha package for Python
+=
+[1stcaptcha.com](https://1stcaptcha.com) package for Python3
 
-solver recaptchaV2, recaptchaV3, hcaptcha, funcaptcha, imageToTexxt ,Zalo Captcha, .... Super fast and cheapest.
-Install library :
+Solver recaptchaV2, recaptchaV3, hcaptcha, funcaptcha, imageToText, Zalo Captcha,.... Super fast and cheapest.
 
-cd anycaptcha-python
-pip install -e .
+# Install
 
-read demo.py to know how to use the library
+```bash
+pip install 1stcaptcha
+```
 
-# init client 
+# Usage
 
-    from onestCaptcha import onestCaptchaClient
-    APIKEY ="0aa92cd8393a49698c408ea0ee56c2a5"
-    client= onestCaptchaClient(apikey=APIKEY)
+## init client
 
+```python
+from onest_captcha import OneStCaptchaClient
 
-#  solver recaptcha v2:
+APIKEY = "0aa92cd8393a49698c408ea0ee56c2a5"
+client = OneStCaptchaClient(apikey=APIKEY)
+```
 
-    sitekey="6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-"
-    siteurl="https://www.google.com/recaptcha/api2/demo"
-    invisible= False
-    result= client.recaptchaV2_task_proxyless(siteurl,sitekey,invisible=invisible)
-    if result["code"]==0 : # success:
-        print(result["token"])
-    else: # wrong
-        print(result["messeage"])
+## solver recaptcha v2:
 
-# solve image2text
+```python
+site_key = "6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-"
+site_url = "https://www.google.com/recaptcha/api2/demo"
+invisible = False
+result = client.recaptchaV2_task_proxyless(site_url, site_key, invisible=invisible)
+if result["code"] == 0:  # success:
+    print(result["token"])
+else:  # wrong
+    print(result["messeage"])
+```
 
+## solve image2text
 
-    result= client.image_to_text(file="1.jpg")
-    if result["code"]==0 : # success:
-        print(result["token"])
-    else: # wrong
-        print(result["messeage"])
+```python
 
-# solve recaptchaClick
+result = client.image_to_text(file="1.jpg")
+if result["code"] == 0:  # success:
+    print(result["token"])
+else:  # wrong
+    print(result["messeage"])
+```
 
-    url_list=['']
-    caption='cars'
-    result= client.recaptcha_click(url_list=url_list,caption=caption )
-    if result["code"]==0 : # success:
-        print(result["token"])
-    else: # wrong
-        print(result["messeage"])
+## solve recaptchaClick
 
-# funcaptcha
-    sitekey="2CB16598-CB82-4CF7-B332-5990DB66F3AB"
-    siteurl="https://outlook.com/"
-    result= client.funCaptcha_task_proxyless(siteurl,sitekey )
-    if result["code"]==0 : # success:
-        print(result["token"])
-    else: # wrong
-        print(result["messeage"])
+```python
+url_list = ['']
+caption = 'cars'
+result = client.recaptcha_click(url_list=url_list, caption=caption)
+if result["code"] == 0:  # success:
+    print(result["token"])
+else:  # wrong
+    print(result["messeage"])
+```
 
+## funcaptcha
 
+```python
+site_key = "2CB16598-CB82-4CF7-B332-5990DB66F3AB"
+site_url = "https://outlook.com/"
+result = client.funCaptcha_task_proxyless(site_url, site_key)
+if result["code"] == 0:  # success:
+    print(result["token"])
+else:  # wrong
+    print(result["messeage"])
+```

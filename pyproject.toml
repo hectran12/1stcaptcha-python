@@ -1,18 +1,22 @@
-[project]
-name = "onestCaptcha"
-version = "0.0.1"
-authors = [
-  { name="onestCaptcha", email="onestcaptcha@support.com" },
+[tool.poetry]
+name = "1stcaptcha"
+packages = [
+    { include = "onest_captcha" },
 ]
-description = "captcha solver"
+version = "1.0.0"
+description = "Solver recaptchaV2, recaptchaV3, hcaptcha, funcaptcha, imageToText, Zalo Captcha,.... Super fast and cheapest"
+authors = ["NguyenLinhUET <nguyenlinh.uet@gmail.com>"]
 readme = "README.md"
-requires-python = ">=3.6"
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-]
+repository = "https://github.com/1stcaptcha/1stcaptcha-python"
+homepage = "https://github.com/1stcaptcha/1stcaptcha-python"
+license = "MIT"
+keywords = ["1stcaptcha", "recaptcha", "recaptchav3", "hcaptcha", "funcaptcha", "imagetotext", "zalo captcha", "solver captcha"]
 
-[project.urls]
-"Homepage" = "https://github.com/pypa/sampleproject"
-"Bug Tracker" = "https://github.com/pypa/sampleproject/issues"
+[tool.poetry.dependencies]
+python = "^3.7"
+requests = "^2.31.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
