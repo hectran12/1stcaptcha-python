@@ -27,7 +27,7 @@ client = OneStCaptchaClient(apikey=APIKEY)
 site_key = "6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-"
 site_url = "https://www.google.com/recaptcha/api2/demo"
 invisible = False
-result = client.recaptchaV2_task_proxyless(site_url, site_key, invisible=invisible)
+result = client.recaptcha_v2_task_proxyless(site_url, site_key, invisible=invisible)
 if result["code"] == 0:  # success:
     print(result["token"])
 else:  # wrong
@@ -62,7 +62,7 @@ else:  # wrong
 ```python
 site_key = "2CB16598-CB82-4CF7-B332-5990DB66F3AB"
 site_url = "https://outlook.com/"
-result = client.funCaptcha_task_proxyless(site_url, site_key)
+result = client.fun_captcha_task_proxyless(site_url, site_key)
 if result["code"] == 0:  # success:
     print(result["token"])
 else:  # wrong

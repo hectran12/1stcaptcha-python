@@ -6,12 +6,12 @@ from onest_captcha import OneStCaptchaClient
 
 
 def demo_funcaptcha():
-    APIKEY = "0aa92cd8393a49698c408ea0ee56c2a5"
-    client = OneStCaptchaClient(apikey=APIKEY)
-    sitekey = "2CB16598-CB82-4CF7-B332-5990DB66F3AB"
-    siteurl = "https://twitter.com"
-    while (True):
-        result = client.funCaptcha_task_proxyless(siteurl, sitekey)
+    apikey = "0aa92cd8393a49698c408ea0ee56c2a5"
+    client = OneStCaptchaClient(apikey=apikey)
+    site_key = "2CB16598-CB82-4CF7-B332-5990DB66F3AB"
+    site_url = "https://twitter.com"
+    while True:
+        result = client.fun_captcha_task_proxyless(site_url, site_key)
         # result= client.image_to_text(base64img="base64img") # if you send base64img
         if result["code"] == 0:  # success:
             return result["token"]
