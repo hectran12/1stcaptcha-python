@@ -1,0 +1,18 @@
+[project]
+name = "onestCaptcha"
+version = "0.0.1"
+authors = [
+  { name="onestCaptcha", email="onestcaptcha@support.com" },
+]
+description = "captcha solver"
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/pypa/sampleproject"
+"Bug Tracker" = "https://github.com/pypa/sampleproject/issues"
