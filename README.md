@@ -34,6 +34,18 @@ else:  # wrong
     print(result["messeage"])
 ```
 
+## solver recaptcha v3:
+
+```python
+token = client.recaptcha_v3_task_proxyless(site_key="YOUR_SITE_KEY",
+                                           site_url="YOUR_SITE_URL",
+                                           page_action="YOUR_PAGE_ACTION")
+if result["code"] == 0:  # success:
+    print(result["token"])
+else:  # wrong
+    print(result["messeage"])
+```
+
 ## solve image2text
 
 ```python
