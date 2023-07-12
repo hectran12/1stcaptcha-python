@@ -3,7 +3,7 @@ name = "1stcaptcha"
 packages = [
     { include = "onest_captcha" },
 ]
-version = "1.0.2"
+version = "1.0.3"
 description = "Solver recaptchaV2, recaptchaV3, hcaptcha, funcaptcha, imageToText, Zalo Captcha,.... Super fast and cheapest"
 authors = ["NguyenLinhUET <nguyenlinh.uet@gmail.com>"]
 readme = "README.md"
