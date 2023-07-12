@@ -63,6 +63,24 @@ class OneStCaptchaClient:
         except Exception as e:
             return {"code": 1, "messeage": str(e)}
 
+    def recaptcha_v3_task_proxyless(self, site_url, site_key, page_action, min_score: float = 0.3, timeout=180,
+                                    time_sleep=1):
+        try:
+            r = requests.get(
+                f"{self.BASE_URL}/recaptchav3?apikey={self.apikey}&sitekey={site_key}&siteurl={site_url}&version=v3&pageaction={page_action}&minscore={min_score}"
+            )
+            if r.status_code == 200:
+                data = r.json()
+                if data['Code'] == 0:
+                    task_id = data['TaskId']
+                else:
+                    raise RuntimeError("Error " + str(data))
+            else:
+                raise RuntimeError("Error " + r.text)
+            return {"code": 0, "token": self.get_result(task_id, timeout, time_sleep)}
+        except Exception as e:
+            return {"code": 1, "messeage": str(e)}
+
     def fun_captcha_task_proxyless(self, site_url, site_key, timeout=180, time_sleep=3):
         try:
             r = requests.get(
