@@ -36,6 +36,8 @@ class OneStCaptchaClient:
                     if data['Status'] == "SUCCESS":
                         if type_captcha == "image2text" or type_captcha == "recaptcha_click":
                             return data["Data"]
+                        elif type_captcha == "v3_enterprise":
+                            return data["Data"]
                         return data["Data"]["Token"]
                     elif data['Status'] == "ERROR":
                         raise Exception(data["Message"])
@@ -50,6 +52,23 @@ class OneStCaptchaClient:
         try:
             r = requests.get(
                 f"{self.BASE_URL}/recaptchav2?apikey={self.apikey}&sitekey={site_key}&siteurl={site_url}&version=v2&invisible={str(invisible).lower()}"
+            )
+            if r.status_code == 200:
+                data = r.json()
+                if data['Code'] == 0:
+                    task_id = data['TaskId']
+                else:
+                    raise RuntimeError("Error " + str(data))
+            else:
+                raise RuntimeError("Error " + r.text)
+            return {"code": 0, "token": self.get_result(task_id, timeout, time_sleep)}
+        except Exception as e:
+            return {"code": 1, "messeage": str(e)}
+
+    def recaptcha_v2_enterprise_task_proxyless(self, site_url, site_key, timeout=180, time_sleep=1):
+        try:
+            r = requests.get(
+                f"{self.BASE_URL}/recaptchav2_enterprise?apikey={self.apikey}&sitekey={site_key}&siteurl={site_url}"
             )
             if r.status_code == 200:
                 data = r.json()
@@ -78,6 +97,32 @@ class OneStCaptchaClient:
             else:
                 raise RuntimeError("Error " + r.text)
             return {"code": 0, "token": self.get_result(task_id, timeout, time_sleep)}
+        except Exception as e:
+            return {"code": 1, "messeage": str(e)}
+
+    def recaptcha_v3_enterprise_task_proxyless(
+            self,
+            site_url,
+            site_key,
+            page_action,
+            min_score: float = 0.3,
+            timeout=180,
+            time_sleep=1
+    ):
+        try:
+            r = requests.get(
+                f"{self.BASE_URL}/recaptchav3_enterprise?apikey={self.apikey}&sitekey={site_key}&siteurl={site_url}&pageaction={page_action}&minscore={min_score}"
+            )
+            if r.status_code == 200:
+                data = r.json()
+                if data['Code'] == 0:
+                    task_id = data['TaskId']
+                else:
+                    raise RuntimeError("Error " + str(data))
+            else:
+                raise RuntimeError("Error " + r.text)
+            result = self.get_result(task_id, timeout, time_sleep, type_captcha="v3_enterprise")
+            return {"code": 0, "token": result.get("Token"), "user_agent": result.get("UserAgent")}
         except Exception as e:
             return {"code": 1, "messeage": str(e)}
 

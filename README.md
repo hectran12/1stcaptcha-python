@@ -24,10 +24,18 @@ client = OneStCaptchaClient(apikey=APIKEY)
 ## solver recaptcha v2:
 
 ```python
-site_key = "6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-"
-site_url = "https://www.google.com/recaptcha/api2/demo"
-invisible = False
-result = client.recaptcha_v2_task_proxyless(site_url, site_key, invisible=invisible)
+result = client.recaptcha_v2_task_proxyless(site_url="YOUR_SITE_URL", site_key="YOUR_SITE_KEY", invisible=False)
+if result["code"] == 0:  # success:
+    print(result["token"])
+else:  # wrong
+    print(result["messeage"])
+```
+
+## solver recaptcha v2 enterprise:
+
+```python
+
+result = client.recaptcha_v2_enterprise_task_proxyless(site_url="YOUR_SITE_URL", site_key="YOUR_SITE_KEY")
 if result["code"] == 0:  # success:
     print(result["token"])
 else:  # wrong
@@ -37,11 +45,23 @@ else:  # wrong
 ## solver recaptcha v3:
 
 ```python
-token = client.recaptcha_v3_task_proxyless(site_key="YOUR_SITE_KEY",
-                                           site_url="YOUR_SITE_URL",
-                                           page_action="YOUR_PAGE_ACTION")
+result = client.recaptcha_v3_task_proxyless(site_url="YOUR_SITE_URL", site_key="YOUR_SITE_KEY",
+                                            page_action="YOUR_PAGE_ACTION")
 if result["code"] == 0:  # success:
     print(result["token"])
+else:  # wrong
+    print(result["messeage"])
+```
+
+## solver recaptcha v3 enterprise:
+
+```python
+result = client.recaptcha_v3_enterprise_task_proxyless(site_key="YOUR_SITE_KEY",
+                                                       site_url="YOUR_SITE_URL",
+                                                       page_action="YOUR_PAGE_ACTION")
+if result["code"] == 0:  # success:
+    print(result.get('token'))
+    print(result.get('user_agent'))
 else:  # wrong
     print(result["messeage"])
 ```
